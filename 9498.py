@@ -1,5 +1,5 @@
 a = int(input())
-
+b = []
 if a<=100 and a>=90 :
     print("A")
 elif a<= 89 and a>=80:
@@ -10,3 +10,4 @@ elif a<= 69 and a>=60:
     print("D")
 else:
     print("F")
+
