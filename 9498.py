@@ -1,5 +1,4 @@
 a = int(input())
-b = []
 if a<=100 and a>=90 :
     print("A")
 elif a<= 89 and a>=80:
