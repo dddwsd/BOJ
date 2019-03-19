@@ -5,7 +5,7 @@
     a = [1,3,5,7,8,10,12]
     b = [4,6,9,11]
     c = [2]
-    num = int(0);
+    num = int(0)
     # 1 + 7 = 월
     for i in range(1,x):
         if i in a:
