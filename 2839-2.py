@@ -5,7 +5,7 @@ def switch(total,c):
         if total >= 1:
             total -= 1
             total += 2
-            print(total);
+            print(total)
         else:
             print(-1)
     elif c == 2:
