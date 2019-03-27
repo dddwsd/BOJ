@@ -1,5 +1,3 @@
-import sys
-
 def move(x,y):
     global result
     w_list.append(M[x][y])
