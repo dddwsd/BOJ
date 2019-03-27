@@ -2,33 +2,27 @@ import sys
 
 def move(x,y):
     global result
-    global check
-    if x < 0 or x >= a or y < 0 or y >= b:
-        return
-    asc = ord(total[x][y])-65
-    if alpha[asc] == 1:
-        return
-    alpha[asc] = 1
-    check += 1
-    move(x-1,y)
-    move(x+1,y)
-    move(x,y-1)
-    move(x,y+1)
-    if result < check:
-        result = check
-    check -= 1
-    alpha[asc] = 0
+    w_list.append(M[x][y])
+    
+    if x-1 >= 0 and (M[x-1][y] not in w_list):
+        move(x-1,y)
 
+    if (x+1 < a) and (M[x+1][y] not in w_list):
+        move(x+1,y)
 
+    if (y-1 >= 0) and (M[x][y-1] not in w_list):
+        move(x,y-1)
+
+    if (y+1 < b) and (M[x][y+1] not in w_list):
+        move(x,y+1)
+
+    if result < len(w_list):
+        result = len(w_list)
+    w_list.remove(M[x][y])
 
 a,b = map(int,input().split())
-total = []
-for i in range(0,a):
-    total.append(sys.stdin.readline())
-    
-alpha = [0 for i in range(26)]
-# A 는 65 -> 0이 되어야 하므로 -65
+M=[list(map(lambda x: ord(x)-65,input())) for i in range(a)]
 result = 0
-check = 0
+w_list = []
 move(0,0)
 print(result)
