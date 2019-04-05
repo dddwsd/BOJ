@@ -55,7 +55,7 @@ def find():
                 c_m_pipe[index] += n_pipe[i]
                 c_n_use[i] = 0
 
-start = timeit.default_timer()
+
 m = int(input())
 m_pipe = list(map(int,input().split()))
 m_pipe.sort(reverse=True)
@@ -64,6 +64,7 @@ max_pipe = deepcopy(m_pipe)
 n = int(input())
 n_pipe = list(map(int,input().split()))
 n_pipe.sort(reverse=True)
+start = timeit.default_timer()
 maximum_index = [0 for i in range(m)]
 ck = n-1
 for i in range(0,m):
