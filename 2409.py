@@ -12,17 +12,29 @@
 # 출력 만들 수 있는 필요한 파이프의 최대 개수
 import sys
 sys.setrecursionlimit(10**9)
+from copy import *
+
+total = 0
 
 def find():
     global max_num
-    
+    global total
     while stack:
+        total += 1
         c_m_pipe,c_n_use,use_num,index = stack.pop()
-        c_m_pipe = list(c_m_pipe)
-        c_n_use = list(c_n_use)
         if use_num > max_num:
             max_num = use_num
-        for i in range(n):
+        total_num = 0
+
+        for i in range(index,m):
+            total_num += max_pipe[i]
+        if use_num + total_num < max_num:
+            continue
+        c_m_pipe = list(c_m_pipe)
+        c_n_use = list(c_n_use)
+       
+
+        for i in range(n-1,-1,-1):
             if c_n_use[i] == 0 and index < m and c_m_pipe[index] >= n_pipe[i] :
                 c_m_pipe[index] -= n_pipe[i]
                 c_n_use[i] = 1
@@ -36,11 +48,23 @@ def find():
 m = int(input())
 m_pipe = list(map(int,input().split()))
 m_pipe.sort(reverse=True)
-
+max_pipe = deepcopy(m_pipe)
 
 n = int(input())
 n_pipe = list(map(int,input().split()))
 n_pipe.sort(reverse=True)
+
+maximum = 0
+for i in range(0,m):
+    cnt = 0
+    for j in range(n-1,-1,-1):
+        if max_pipe[i] >= n_pipe[j]:
+            max_pipe[i] -= n_pipe[j]
+            cnt+=1
+        else:
+            max_pipe[i] = cnt
+            break
+
 
 n_use = [0 for i in range(n)]
 
