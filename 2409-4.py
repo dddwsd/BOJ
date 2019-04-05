@@ -10,6 +10,17 @@
 # 만들고자 하는 파이프의 길이
 
 # 출력 만들 수 있는 필요한 파이프의 최대 개수
+
+'''
+런타임 에러
+1. 배열에 할당된 크기를 넘어서 접근했을 때
+2. 전역 배열의 크기가 메모리 제한을 초과할 때
+3. 지역 배열의 크기가 스택 크기 제한을 넘어갈 때
+4. 0으로 나눌 떄
+5. 라이브러리에서 예외를 발생시켰을 때
+6. 재귀 호출이 너무 깊어질 때
+7. 이미 해제된 메모리를 또 참조할 때
+'''
 import sys
 sys.setrecursionlimit(10**9)
 from copy import *
@@ -25,11 +36,9 @@ def find():
         c_m_pipe,c_n_use,use_num,index = stack.pop()
         if use_num > max_num:
             max_num = use_num
-        total_num = 0
 
-        for i in range(index,m):
-            total_num += max_pipe[i]
-        if use_num + total_num < maximum:
+        # index ~ m-1 를 더한 값
+        if index >= 1 and use_num + maximum_index[m-1]-maximum_index[index-1] < maximum:
             continue
         c_m_pipe = list(c_m_pipe)
         c_n_use = list(c_n_use)
@@ -55,7 +64,7 @@ max_pipe = deepcopy(m_pipe)
 n = int(input())
 n_pipe = list(map(int,input().split()))
 n_pipe.sort(reverse=True)
-maximum = 0
+maximum_index = [0 for i in range(m)]
 ck = n-1
 for i in range(0,m):
     cnt = 0
@@ -66,8 +75,12 @@ for i in range(0,m):
         else:
             ck = j
             max_pipe[i] = cnt
-            maximum += cnt
+            if i == 0:
+                maximum_index[i] = cnt
+            else:
+                maximum_index[i] = maximum_index[i-1] + cnt
             break
+maximum = sum(max_pipe)
 
 n_use = [0 for i in range(n)]
 
@@ -78,8 +91,8 @@ if m_pipe[0] < n_pipe[0]:
 else:
     index = 0
     stack = set([(tuple(m_pipe),tuple(n_use),max_num,index)])
-    
-    find()
+   
+    #find()
     end = timeit.default_timer()
     print(total)
     print(end-start)
