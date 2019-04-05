@@ -15,29 +15,23 @@ sys.setrecursionlimit(10**9)
 
 def find():
     global max_num
+    
     while stack:
-        m_pipe,n_pipe,n_use,use_num,index = stack.pop()
-        m_pipe = list(m_pipe)
-        n_pipe = list(n_pipe)
-        n_use = list(n_use)
+        c_m_pipe,c_n_use,use_num,index = stack.pop()
+        c_m_pipe = list(c_m_pipe)
+        c_n_use = list(c_n_use)
         if use_num > max_num:
             max_num = use_num
-        if index == m:
-            return
-        flag = 0
         for i in range(n):
-            if n_use[i] == 0 and index < m and m_pipe[index] >= n_pipe[i] :
-                m_pipe[index] -= n_pipe[i]
-                n_use[i] = 1
-                if index < m and m_pipe[index] < n_pipe[n-1]:
-                    index+=1
-                    flag = 1
-                stack.add((tuple(m_pipe),tuple(n_pipe),tuple(n_use),use_num+1,index))
-                if flag == 1:
-                    index-=1
-                    flag = 0
-                m_pipe[index] += n_pipe[i]
-                n_use[i] = 0
+            if c_n_use[i] == 0 and index < m and c_m_pipe[index] >= n_pipe[i] :
+                c_m_pipe[index] -= n_pipe[i]
+                c_n_use[i] = 1
+                if index < m and c_m_pipe[index] < n_pipe[n-1]:
+                    stack.add((tuple(c_m_pipe),tuple(c_n_use),use_num+1,index+1))
+                else:
+                    stack.add((tuple(c_m_pipe),tuple(c_n_use),use_num+1,index))
+                c_m_pipe[index] += n_pipe[i]
+                c_n_use[i] = 0
 
 m = int(input())
 m_pipe = list(map(int,input().split()))
@@ -56,7 +50,7 @@ if m_pipe[0] < n_pipe[0]:
     print(max_num)
 else:
     index = 0
-    stack = set([(tuple(m_pipe),tuple(n_pipe),tuple(n_use),max_num,index)])
+    stack = set([(tuple(m_pipe),tuple(n_use),max_num,index)])
     find()
     print(max_num)
 
