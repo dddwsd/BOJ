@@ -73,10 +73,8 @@ def find(stack,fire):
                 stack2.add((x+1,y,count+1))
         stack = stack2
     return 0
-
-
-tc = int(input())
-for i in range(tc):
+    
+for _ in range(int(input())):
     w,h = map(int,input().split())
     matrix = [[] for j in range(h)]
     fire = set()
@@ -84,8 +82,7 @@ for i in range(tc):
     for j in range(h):
         list1 = list(input())
         if '@' in list1:
-            x = list1.index('@')
-            y = j
+            x ,y = list1.index('@'),j
         for k in range(w):
             if list1[k] == '*':
                 fire.add((k,j))
