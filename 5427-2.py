@@ -1,7 +1,6 @@
 from sys import stdin
 from collections import deque
 input = stdin.readline
-from pprint import *
 
 for _ in range(int(input())):
     w, h = map(int, input().split())
@@ -40,4 +39,5 @@ for _ in range(int(input())):
                 a[i][j] = '.'
             else:
                 dist[i][j] = 0
+
     bfs()
