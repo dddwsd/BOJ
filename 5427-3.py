@@ -34,17 +34,16 @@ def find(stack_f,stack_p):
         stack_f2 = set()
         stack_p2 = set()
         #print(stack)
-        for x,y,count in stack_f:
+        for x,y in stack_f:
             for i in range(4):
                 nx,ny = x+dx[i],y+dy[i]
                 if nx<0 or nx>=w or  ny <0 or ny>=h:
-                    if count is 1:
-                        continue
+                    continue            
                 if matrix[ny][nx] == '#' or dist[ny][nx] != 0:
                     continue
-                dist[ny][nx] = dist[y][x] +1
-                stack_f2.add((nx,ny,count))
-        for x,y,count in stack_p:
+                dist[ny][nx] = -1
+                stack_f2.add((nx,ny))
+        for x,y in stack_p:
             for i in range(4):
                 nx,ny = x+dx[i],y+dy[i]
                 if nx<0 or nx>=w or  ny <0 or ny>=h:
@@ -53,7 +52,7 @@ def find(stack_f,stack_p):
                 if matrix[ny][nx] == '#' or dist[ny][nx] != 0:
                     continue
                 dist[ny][nx] = dist[y][x] +1
-                stack_p2.add((nx,ny,count))        
+                stack_p2.add((nx,ny))        
         stack_f = stack_f2
         stack_p = stack_p2
     print("IMPOSSIBLE")
@@ -68,10 +67,10 @@ for _ in range(int(input())):
     for i in range(h):
         for j in range(w):
             if matrix[i][j] == '*':
-                stack_f.add((j,i,1))
-                dist[i][j] = 1
+                stack_f.add((j,i))
+                dist[i][j] = -1
             elif matrix[i][j] == '@':
-                stack_p.add((j,i,0))
+                stack_p.add((j,i))
                 dist[i][j] = 1
             else:
                 dist[i][j] = 0
