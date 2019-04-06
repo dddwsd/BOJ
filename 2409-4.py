@@ -32,7 +32,7 @@ def find():
     global max_num
     global total
     while stack:
-        total += 1
+        
         c_m_pipe,c_n_use,use_num,index = stack.pop()
         if use_num > max_num:
             max_num = use_num
@@ -45,6 +45,7 @@ def find():
        
 
         for i in range(n-1,-1,-1):
+            total += 1
             if c_n_use[i] == 0 and index < m and c_m_pipe[index] >= n_pipe[i] :
                 c_m_pipe[index] -= n_pipe[i]
                 c_n_use[i] = 1
@@ -93,7 +94,7 @@ else:
     index = 0
     stack = set([(tuple(m_pipe),tuple(n_use),max_num,index)])
    
-    #find()
+    find()
     end = timeit.default_timer()
     print(total)
     print(end-start)
