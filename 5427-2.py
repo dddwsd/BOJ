@@ -14,6 +14,7 @@ for _ in range(int(input())):
     def bfs():
         q.append((sx, sy, 0))
         dist[sx][sy] = 1
+        
         while q:
             x, y, f = q.popleft()
             for i in range(4):
