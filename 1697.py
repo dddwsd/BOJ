@@ -9,9 +9,10 @@ stack = set()
 stack.add(n)
 cnt = 0
 visited = [0 for _ in range(100001)]
+# bfs - 최소 길이
 # 100000까지 이므로 +1해서 배열할당
+# set + visited + case미리 계산 을 사용하여 제일 빠른 속도
 visited[n] = 1
-
 def find():
     global cnt
     global visited
