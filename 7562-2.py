@@ -24,7 +24,7 @@ for _ in range(int(input())):
         print(0)
         continue
     stack = set([(x,y)])
-    visited = [[0 for _ in range(l)] for _ in range(l)]
+    visited = [[0]*l for _ in range(l)]
     cnt =0
     def find(visited,cnt,stack):
         while True:
