@@ -1,6 +1,7 @@
 # M H N
 # n m h
 
+
 def down():
     wrong_count = 0
     for col in range(M):
