@@ -14,6 +14,7 @@ import sys
 sys.setrecursionlimit(10**9)
 from copy import *
 
+
 total = 0
 
 def find():

@@ -15,6 +15,7 @@ sys.setrecursionlimit(10**9)
 from copy import *
 import timeit
 
+
 total = 0
 
 def find():
