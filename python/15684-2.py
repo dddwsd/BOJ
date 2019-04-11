@@ -6,6 +6,7 @@ for i in range(m):
     if b <= n-1:
         matrix[a-1][b-1] = 1
 
+
 def check():
     for i in range(n):
         pos1 = i
