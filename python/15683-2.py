@@ -39,10 +39,15 @@ for i in range(n):
             cctv.append([u|l|r|d])
 num = n*m
 temp =0
+
+# sets는 여러개의 set이 product된 것이므로 한 튜플 안에 여러개의 set이 있다.
+# 이 set들을 하나의 set으로 변경해 주는 작업
 def union(sets):
     res = set()
     for s in sets: res|= s
+    # 튜플안에 들어있는 set들 중 하나씩 꺼내서 res에 더해준다.
     return res
+
 
 for i in product(*cctv):
     num = min(num,zero-len(union(i)))
