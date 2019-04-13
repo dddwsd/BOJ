@@ -41,7 +41,7 @@ from copy import deepcopy
 
 n,m = map(int,input().split())
 matrix = [list(input()) for _ in range(n)]
-visited = [[[[0]*m for _ in range(n)] for _ in range(m)] for _ in range(n)]
+visited = [[[[0]*n for _ in range(m)] for _ in range(n)] for _ in range(m)]
 
 for i in range(n):
     for j in range(m):
@@ -50,6 +50,7 @@ for i in range(n):
         if matrix[i][j] == "B":
             b_x,b_y = j,i
 # r_x,r_y,b_x,b_y,이동거리를 queue에 넣어줌
+visited[r_x][r_y][b_x][b_y] = 1
 stack = []
 stack.append((r_x,r_y,b_x,b_y,0))
 dx = (0,-1,0,1)
@@ -64,8 +65,7 @@ def move(x,dt1,y,dt2,length):
 
 def find():
     while stack:
-        list1 = stack.pop(0)
-        rx,ry,bx,by,dist = list1[0],list1[1],list1[2],list1[3],list1[4]
+        rx,ry,bx,by,dist  = stack.pop(0)
         if dist > 10:
             break
         for i in range(4):
