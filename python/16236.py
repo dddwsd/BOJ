@@ -84,14 +84,7 @@ def update_length(x,y,l_matrix,flag):
 
     return t_matrix
 
-
-def print_list(matrix):
-    for i in range(n):
-        print(matrix[i])
-    print()
-
 t_matrix = update_length(x,y,l_matrix,1)
-
 
 def find_min():
     global dist,x,y,fish,eat,s_size,able_eat,t_matrix
@@ -125,15 +118,11 @@ def find_min():
     else:
         t_matrix = update_length(x,y,l_matrix,0)
 
-
-
-
 while True:
     # 가장 거리가 가까운 것을 찾아서 fish에서 제거하고 위치를 기억.
     
     if find_min() == False:
         break
-    
     
 print(dist)
 
