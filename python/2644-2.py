@@ -11,15 +11,15 @@
 
 def find():        
     while result:
-        count, point = result.pop()
-        visited[point] = 0
-        if visited[parent[point]] == 1:
-            if parent[point] == r2:
+        count, matrix = result.pop()
+        visited[matrix] = 0
+        if visited[parent[matrix]] == 1:
+            if parent[matrix] == r2:
                 print(count+1)
                 return 0
-            result.add((count+1,parent[point]))
-        if child[point] != 0 :
-            for i in child[point]:
+            result.add((count+1,parent[matrix]))
+        if child[matrix] != 0 :
+            for i in child[matrix]:
                 if i == r2:
                     print(count+1)
                     return 0

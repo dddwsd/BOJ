@@ -11,13 +11,13 @@
 
 def find():        
     while result:
-        count, point = result.pop()
-        if parent[point] == r2:
+        count, matrix = result.pop()
+        if parent[matrix] == r2:
             print(count+1)
             return 0
-        result.add((count+1,parent[point]))
-        if child[point] != 0 :
-            for i in child[point]:
+        result.add((count+1,parent[matrix]))
+        if child[matrix] != 0 :
+            for i in child[matrix]:
                 if i == r2:
                     print(count+1)
                     return 0

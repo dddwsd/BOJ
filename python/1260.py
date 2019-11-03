@@ -26,8 +26,6 @@ for i in range(m):
     edge[x].append(y)
     edge[y].append(x)
 
-edge = list(map(sorted,edge))
-
 result = [v]
 visited = [0 for i in range(n+1)]
 visited[v] = 1
