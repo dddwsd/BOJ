@@ -13,42 +13,43 @@ n개의 섬으로 이루어진 나라
 
 한 번의 이동에서 옮길 수 있는 물품들의 중량의 최댓값을 구하는 프로그램
 '''
-# binary search
+
+# Union find
 from collections import defaultdict
 from collections import deque
 n,m = map(int,input().split())
 
-bridge = defaultdict(list)
-_min = 1000000000
-_max = 1
+bridge = defaultdict(int)
+lands = defaultdict(int)
+
 for _ in range(m):
     a,b,c = map(int,input().split())
-    
-    bridge[a].append([b,c])
-    bridge[b].append([a,c])
-    _min = min(_min,c)
-    _max = max(_max,c)
+    bridge[(a,b)] = c
+    lands[a] = a
+    lands[b] = b
 land1,land2 = map(int,input().split())
+
+bridge = sorted(bridge.items(),key=lambda x: (-x[1],x[0]))
 result = -1
 
-def bfs(_max):
-    q = deque([land1])
-    visited = [False] * (n+1)
-    visited[land1] = True
-    
-    while q:
-        s = q.popleft()
-        for d, val in bridge[s]:
-            if not visited[d] and val >= _max:
-                q.append(d)
-                visited[d] = True
-    return visited[land2]
+def find(key):
+    if lands[key] == key:
+        return key
+    lands[key] = find(lands[key])
+    return lands[key]
 
-while _min <= _max:
-    mid = (_min + _max)//2
-    if bfs(mid):
-        result = mid
-        _min = mid+1
+def union(key):
+    key1, key2 = key
+    key1 = find(key1)
+    key2 = find(key2)
+    if key1 < key2:
+        lands[key2] = key1
     else:
-        _max = mid-1
+        lands[key1] = key2
+
+for key, val in bridge:
+    union(key)
+    if find(land1) == find(land2):
+        result = val
+        break
 print(result)
