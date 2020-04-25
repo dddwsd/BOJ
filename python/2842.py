@@ -55,4 +55,12 @@ while left != left_bound and right != right_bound:
     else:
         right += 1
 
+<<<<<<< HEAD
 print(result)
+=======
+print(result)
+    
+
+
+
+>>>>>>> 4acd88a3ae641432de89c5c13f28d92447a1e567
