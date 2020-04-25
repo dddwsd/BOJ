@@ -54,5 +54,4 @@ while left != left_bound and right != right_bound:
         left += 1
     else:
         right += 1
-
 print(result)
